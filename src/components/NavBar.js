@@ -1,29 +1,43 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
+import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from '../assets/logo.webp';
 import styles from '../styles/NavBar.module.css';
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <Navbar className={styles.NavBar} expand="md" fixed='top'>
       <Container>
-        <Navbar.Brand>
-          <img src={logo} alt='logo' height='90' />
-        </Navbar.Brand>
+        <NavLink to="/">
+          <Navbar.Brand>
+            <img src={logo} alt='logo' height='90' />
+          </Navbar.Brand>
+        </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto text-right">
-              <Nav.Link>
+              <NavLink
+                exact
+                className={styles.NavLink}
+                activeClassName={styles.Active}
+                to="/"
+              >
                 <i class="fa-solid fa-house"></i>Home
-              </Nav.Link>
-              <Nav.Link>
+              </NavLink>
+              <NavLink
+                className={styles.NavLink}
+                activeClassName={styles.Active}
+                to="/signin"
+              >
                 <i class="fa-solid fa-right-to-bracket"></i>Sign in
-              </Nav.Link>
-              <Nav.Link>
+              </NavLink>
+              <NavLink
+                className={styles.NavLink}
+                activeClassName={styles.Active}
+                to="/signup"
+              >
                 <i class="fa-solid fa-user-plus"></i>Sign up
-              </Nav.Link>
+              </NavLink>
             </Nav>
         </Navbar.Collapse>
       </Container>
