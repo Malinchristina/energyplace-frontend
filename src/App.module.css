@@ -1,6 +1,7 @@
 .App {
   font-family: "Roboto", sans-serif;
-  background-color: #cdd5c5 ;
+  /* background-color: #cdd5c5 ; */
+  background-image: url("../src/assets/bg_image.webp");
   min-height: 100vh;
 }
 
@@ -20,6 +21,8 @@
   object-fit: cover;
   height: 100%;
   width: 100%;
+  border-radius: 5px;
+  border: 2px solid #74ddca;
 }
 
 .Image {
