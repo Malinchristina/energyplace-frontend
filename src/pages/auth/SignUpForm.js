@@ -131,7 +131,7 @@ const SignUpForm = () => {
         className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
       >
         <Image
-          className={`${appStyles.FillerImage} CustomBgImage`}
+          className={`${appStyles.FillerImage}`}
           // src={signup}
           src={bg}
 
