@@ -13,8 +13,8 @@
 .Content {
   background-color: #ffffff;
   padding: 10px;
-  border-radius: 2px;
-  border: 1px solid #dadadf;
+  border-radius: 10px;
+  border: 2px solid #35c7c3;
 }
 
 .FillerImage {

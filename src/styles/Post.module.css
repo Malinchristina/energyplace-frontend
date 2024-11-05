@@ -1,9 +1,11 @@
 .Post {
   background-color: #ffffff;
-  border: 1px solid #dadadf;
-  border-radius: 2px;
+  /*border: 1px solid #dadadf;
+  border-radius: 2px; */
   margin-bottom: 16px;
   text-align: center;
+  border-radius: 10px;
+  border: 2px solid #35c7c3;
 }
 
 .Post figure,
