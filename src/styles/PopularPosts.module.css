@@ -1,0 +1,16 @@
+.TopLikedPostsContainer {
+  margin-bottom: 20px;
+}
+
+.PostLink {
+  color: #124f4b;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.TopLikedPostsContainer .popularIcon {
+  color: #124f4b;
+  font-size: 1.6rem; 
+  padding: 7px;      
+  vertical-align: middle;
+}

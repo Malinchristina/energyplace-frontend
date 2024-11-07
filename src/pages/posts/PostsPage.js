@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -16,13 +16,26 @@ import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import PopularPosts from "./PopularPosts";
+
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [topLikedPosts, setTopLikedPosts] = useState([]);
   const { pathname } = useLocation();
-
   const [query, setQuery] = useState("");
+ 
+  // Fetch the top liked posts from the API
+  const fetchTopLikedPosts = useCallback(async () => {
+    try {
+      const { data } = await axiosReq.get("/posts/?ordering=-likes_count&limit=5");
+      const likedPosts = data.results.filter((post) => post.likes_count > 0);
+      setTopLikedPosts(likedPosts);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -30,7 +43,7 @@ function PostsPage({ message, filter = "" }) {
         const { data } = await axiosReq.get(`/posts/?${
           filter}search=${query}`);
         setPosts(data);
-        setHasLoaded(true);
+        setHasLoaded(true);  
       } catch (err) {
         console.log(err);
       }
@@ -39,17 +52,21 @@ function PostsPage({ message, filter = "" }) {
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchPosts();
+      fetchTopLikedPosts();
     }, 1000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, fetchTopLikedPosts]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles mobile</p>
+        {/* PopularPosts only for mobile view */}
+        <div className="d-lg-none">
+          <PopularPosts topLikedPosts={topLikedPosts} /> {/* Pass topLikedPosts */}
+        </div>
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
@@ -69,7 +86,12 @@ function PostsPage({ message, filter = "" }) {
             {posts.results.length ? (
               <InfiniteScroll
               children={posts.results.map((post) => (
-                <Post key={post.id} {...post} setPosts={setPosts} />
+                <Post
+                  key={post.id}
+                  {...post}
+                  setPosts={setPosts}
+                  onLikeUnlike={fetchTopLikedPosts} // Pass function to refresh top liked posts
+                />
               ))}
               dataLength={posts.results.length}
               loader={<Asset spinner />}
@@ -89,7 +111,7 @@ function PostsPage({ message, filter = "" }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <p>Popular profiles for desktop</p>
+      <PopularPosts topLikedPosts={topLikedPosts} />
       </Col>
     </Row>
   );

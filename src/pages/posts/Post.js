@@ -23,6 +23,7 @@ const Post = (props) => {
     updated_at,
     postPage,
     setPosts,
+    onLikeUnlike,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -53,6 +54,7 @@ const Post = (props) => {
             : post;
         }),
       }));
+      onLikeUnlike();
     } catch (err) {
       console.log(err);
     }
@@ -69,6 +71,7 @@ const Post = (props) => {
             : post;
         }),
       }));
+      onLikeUnlike();
     } catch (err) {
       console.log(err);
     }
