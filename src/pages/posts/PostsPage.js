@@ -1,15 +1,14 @@
 import React, { useEffect, useState, useCallback } from "react";
 
-import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import Post from "./Post";
 import Asset from "../../components/Asset";
+import SearchBar from "../../components/SearchBar";
 
 import appStyles from "../../App.module.css";
-import styles from "../../styles/PostsPage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -67,8 +66,13 @@ function PostsPage({ message, filter = "" }) {
         <div className="d-lg-none">
           <PopularPosts topLikedPosts={topLikedPosts} /> {/* Pass topLikedPosts */}
         </div>
-        <i className={`fas fa-search ${styles.SearchIcon}`} />
-        <Form
+        {/* <i className={`fas fa-search ${styles.SearchIcon}`} /> */}
+        <SearchBar
+          value={query}
+          onChange={setQuery}
+          placeholder="Search posts"
+        />
+        {/* <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >
@@ -79,7 +83,7 @@ function PostsPage({ message, filter = "" }) {
             className="mr-sm-2"
             placeholder="Search posts"
           />
-        </Form>
+        </Form> */}
         
         {hasLoaded ? (
           <>
