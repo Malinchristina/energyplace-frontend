@@ -24,6 +24,7 @@ const Post = (props) => {
     postPage,
     setPosts,
     onLikeUnlike,
+    category,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -101,6 +102,9 @@ const Post = (props) => {
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {category && (
+          <div className="text-center">Category: {category}</div>
+        )}
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (
