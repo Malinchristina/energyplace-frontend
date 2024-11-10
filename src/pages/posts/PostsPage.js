@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import Post from "./Post";
 import Asset from "../../components/Asset";
 import SearchBar from "../../components/SearchBar";
+import FilterDropdown from "../../components/FilterDropdown";
 
 import appStyles from "../../App.module.css";
 import { useLocation } from "react-router";
@@ -22,6 +23,7 @@ function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [topLikedPosts, setTopLikedPosts] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState("");
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
  
@@ -36,13 +38,19 @@ function PostsPage({ message, filter = "" }) {
     }
   }, []);
 
+  // Fetch posts with the applied filters
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?${
-          filter}search=${query}`);
+        const endpoint = `/posts/?${filter}search=${query}${
+          categoryFilter ? `&category=${categoryFilter}` : ""
+        }`;
+
+        console.log("Fetching posts with endpoint:", endpoint);
+
+        const { data } = await axiosReq.get(endpoint);
         setPosts(data);
-        setHasLoaded(true);  
+        setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
@@ -57,7 +65,8 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname, fetchTopLikedPosts]);
+  }, [filter, query, categoryFilter, pathname, fetchTopLikedPosts]);
+
 
   return (
     <Row className="h-100">
@@ -72,18 +81,9 @@ function PostsPage({ message, filter = "" }) {
           onChange={setQuery}
           placeholder="Search posts"
         />
-        {/* <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search posts"
-          />
-        </Form> */}
+
+        <FilterDropdown filterType="category" setFilter={setCategoryFilter} />
+
         
         {hasLoaded ? (
           <>
@@ -120,5 +120,6 @@ function PostsPage({ message, filter = "" }) {
     </Row>
   );
 }
+
 
 export default PostsPage;
