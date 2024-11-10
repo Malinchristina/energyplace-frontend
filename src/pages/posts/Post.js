@@ -103,7 +103,7 @@ const Post = (props) => {
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {category && (
-          <div className="text-center">Category: {category}</div>
+          <div className="text-center">Category: {category.name}</div>
         )}
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
