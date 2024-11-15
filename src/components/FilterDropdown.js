@@ -14,12 +14,15 @@ const FilterDropdown = ({ filterType, setFilter }) => {
         let endpoint;
         if (filterType === "category") {
           endpoint = "/categories";
+        } else if (filterType === "location") {
+          endpoint = "/locations";
         }
-        // Add Locations
+        
         const { data } = await axiosReq.get(endpoint);
-        setOptions(data.results || data);
+        setOptions(Array.isArray(data) ? data : data.results || []);
       } catch (err) {
         console.error(`Error fetching ${filterType} options:`, err);
+        setOptions([]); // Ensure options is always an array even on error
       }
     };
     fetchOptions();

@@ -66,21 +66,30 @@ export const ProfileDataProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    let isMounted = true;
+
+
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
           "/posts/?ordering=-likes_count&limit=5"
         );
-        setProfileData((prevState) => ({
-          ...prevState,
-          popularPosts: data,
-        }));
+        if (isMounted) {
+          setProfileData((prevState) => ({
+            ...prevState,
+            popularPosts: data,
+          }));
+        }
       } catch (err) {
-        console.log(err);
+        if (isMounted) console.log(err);
       }
     };
 
     handleMount();
+
+    return () => {
+      isMounted = false;
+    };
   }, [currentUser]);
 
   return (

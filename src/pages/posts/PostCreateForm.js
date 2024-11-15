@@ -24,12 +24,15 @@ function PostCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const [categories, setCategories] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   const [postData, setPostData] = useState({
     title: "",
     content: "",
     image: "",
     category:"",
+    location:"",
+    city:"",
   });
   const { title, content, image, category } = postData;
 
@@ -57,6 +60,21 @@ function PostCreateForm() {
     };
   
     fetchCategories();
+
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch(
+          "https://energyplace-be-f35f3084f662.herokuapp.com/locations/full-countries/"
+        );
+        const data = await response.json();
+        console.log("Fetched locations:", data);
+        setLocations(data);
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    };
+  
+    fetchLocations();
   }, []);
 
   const handleChange = (event) => {
@@ -78,24 +96,36 @@ function PostCreateForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // Validation check for required fields
+    if (!title || !content || !category || !postData.location || !postData.city) {
+      alert("Please fill out all required fields.");
+      return;
+    }
     const formData = new FormData();
 
     formData.append("title", title);
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
-    formData.append("category", category.toString());
-
+    formData.append("category_id", category.toString());
+    formData.append("location_id", parseInt(postData.location, 10));
+    formData.append("city", postData.city);
     
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
     } catch (err) {
-      console.log(err);
+      console.log("Error details:", err.response?.data);  // Log detailed error
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
+    // } catch (err) {
+    //   console.log(err);
+    //   if (err.response?.status !== 401) {
+    //     setErrors(err.response?.data);
+    //   }
+    // }
   };
 
   const textFields = (
@@ -133,6 +163,74 @@ function PostCreateForm() {
         </Form.Control>
       </Form.Group>
       {errors?.category?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      {/* <Form.Group>
+        <Row>
+          <Form.Label>Location</Form.Label>
+          <Form.Control
+            as="select"
+            name="location"
+            value={postData.location}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select a location</option>
+            {locations.map((loc) => (
+              <option key={loc.code} value={loc.code}>
+                {loc.name}
+              </option>
+            ))}
+          </Form.Control>
+        </Row>
+      </Form.Group>
+      {errors?.category?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))} */}
+
+      <Form.Group>
+        <Row>
+          <Col xs={6}>
+            <Form.Label>Country</Form.Label>
+            <Form.Control
+              as="select"
+              name="location"
+              value={postData.location}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select country</option>
+              {locations.map((loc) => (
+                <option key={loc.id} value={loc.id}>
+                  {loc.name}
+                </option>
+              ))}
+            </Form.Control>
+          </Col>
+          <Col xs={6}>
+            <Form.Label>City</Form.Label>
+            <Form.Control
+              type="text"
+              name="city"
+              value={postData.city}
+              onChange={handleChange}
+              placeholder="Enter city"
+              required
+            />
+          </Col>
+        </Row>
+      </Form.Group>
+      {errors?.location?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      {errors?.city?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>

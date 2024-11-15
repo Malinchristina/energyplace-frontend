@@ -25,6 +25,7 @@ const Post = (props) => {
     setPosts,
     onLikeUnlike,
     category,
+    location,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -104,6 +105,14 @@ const Post = (props) => {
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {category && (
           <div className="text-center">Category: {category.name}</div>
+        )}
+        {location && (
+        <>
+        {console.log(location)}
+        <div className="text-center">
+          Location: {location.city}, {location.name}
+        </div>
+        </>
         )}
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>

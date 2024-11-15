@@ -24,6 +24,7 @@ function PostsPage({ message, filter = "" }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [topLikedPosts, setTopLikedPosts] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState("");
+  const [locationFilter, setLocationFilter] = useState("");
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
  
@@ -40,19 +41,23 @@ function PostsPage({ message, filter = "" }) {
 
   // Fetch posts with the applied filters
   useEffect(() => {
+    let isMounted = true;
+
     const fetchPosts = async () => {
       try {
         const endpoint = `/posts/?${filter}search=${query}${
           categoryFilter ? `&category=${categoryFilter}` : ""
-        }`;
+        }${locationFilter ? `&location=${locationFilter}`: ""}`;
 
         console.log("Fetching posts with endpoint:", endpoint);
 
         const { data } = await axiosReq.get(endpoint);
-        setPosts(data);
+        if (isMounted) {
+          setPosts(data);
         setHasLoaded(true);
+        }
       } catch (err) {
-        console.log(err);
+        if (isMounted) console.log(err);
       }
     };
 
@@ -65,7 +70,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, categoryFilter, pathname, fetchTopLikedPosts]);
+  }, [filter, query, categoryFilter, locationFilter, pathname, fetchTopLikedPosts]);
 
 
   return (
@@ -83,8 +88,7 @@ function PostsPage({ message, filter = "" }) {
         />
 
         <FilterDropdown filterType="category" setFilter={setCategoryFilter} />
-
-        
+        <FilterDropdown filterType="location" setFilter={setLocationFilter} />
         {hasLoaded ? (
           <>
             {posts.results.length ? (

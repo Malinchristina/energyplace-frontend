@@ -13,17 +13,24 @@ export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const history = useHistory();
 
-  const handleMount = async () => {
-    try {
-      const { data } = await axiosRes.get("dj-rest-auth/user/");
-      setCurrentUser(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
+    let isMounted = true;
+  
+
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosRes.get("dj-rest-auth/user/");
+        if (isMounted) setCurrentUser(data);
+      } catch (err) {
+        if (isMounted )console.log(err);
+      }
+    };
+
     handleMount();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   useMemo(() => {
