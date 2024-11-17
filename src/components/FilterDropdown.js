@@ -39,7 +39,7 @@ const FilterDropdown = ({ filterType, setFilter }) => {
           <option value="">All {filterType}s</option>
           {options.map((option) => (
             <option key={option.id} value={option.id}>
-              {option.name}
+              {option.name || option.country_name}
             </option>
           ))}
         </Form.Control>
