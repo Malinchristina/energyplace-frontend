@@ -110,7 +110,7 @@ const Post = (props) => {
         <>
         {console.log(location)}
         <div className="text-center">
-          Location: {location.city}, {location.name}
+          Location: {location.locality ? `${location.locality}, ` : ""}{location.country_name}
         </div>
         </>
         )}

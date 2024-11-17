@@ -32,7 +32,7 @@ function PostCreateForm() {
     image: "",
     category:"",
     location:"",
-    city:"",
+    locality:"",
   });
   const { title, content, image, category } = postData;
 
@@ -97,7 +97,7 @@ function PostCreateForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Validation check for required fields
-    if (!title || !content || !category || !postData.location || !postData.city) {
+    if (!title || !content || !category || !postData.location || !postData.locality) {
       alert("Please fill out all required fields.");
       return;
     }
@@ -108,7 +108,7 @@ function PostCreateForm() {
     formData.append("image", imageInput.current.files[0]);
     formData.append("category_id", category.toString());
     formData.append("location_id", parseInt(postData.location, 10));
-    formData.append("city", postData.city);
+    formData.append("locality", postData.locality);
     
 
     try {
@@ -204,7 +204,7 @@ function PostCreateForm() {
               onChange={handleChange}
               required
             >
-              <option value="">Select country</option>
+              <option value="" disabled>Select country</option>
               {locations.map((loc) => (
                 <option key={loc.id} value={loc.id}>
                   {loc.name}
@@ -213,13 +213,13 @@ function PostCreateForm() {
             </Form.Control>
           </Col>
           <Col xs={6}>
-            <Form.Label>City</Form.Label>
+            <Form.Label>Locality</Form.Label>
             <Form.Control
               type="text"
-              name="city"
-              value={postData.city}
+              name="locality"
+              value={postData.locality}
               onChange={handleChange}
-              placeholder="Enter city"
+              placeholder="Enter locality"
               required
             />
           </Col>
@@ -230,7 +230,7 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
-      {errors?.city?.map((message, idx) => (
+      {errors?.locality?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
