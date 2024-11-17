@@ -78,7 +78,6 @@ const ProfileEditForm = () => {
       }));
       history.goBack();
     } catch (err) {
-      console.log("Error details:", err.response?.data);
       setErrors(err.response?.data);
     }
   };

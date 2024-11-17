@@ -49,9 +49,6 @@ function PostCreateForm() {
         );
         const data = await response.json();
   
-        // Log the data to confirm it's a direct array
-        console.log("Fetched categories:", data);
-  
         // Set categories directly from the fetched data
         setCategories(data);
       } catch (error) {
@@ -67,7 +64,6 @@ function PostCreateForm() {
           "https://energyplace-be-f35f3084f662.herokuapp.com/locations/full-countries/"
         );
         const data = await response.json();
-        console.log("Fetched locations:", data);
         setLocations(data);
       } catch (error) {
         console.error("Error fetching locations:", error);
@@ -115,17 +111,10 @@ function PostCreateForm() {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
     } catch (err) {
-      console.log("Error details:", err.response?.data);  // Log detailed error
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
-    // } catch (err) {
-    //   console.log(err);
-    //   if (err.response?.status !== 401) {
-    //     setErrors(err.response?.data);
-    //   }
-    // }
   };
 
   const textFields = (

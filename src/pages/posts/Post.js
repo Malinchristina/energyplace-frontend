@@ -108,7 +108,6 @@ const Post = (props) => {
         )}
         {location && (
         <>
-        {console.log(location)}
         <div className="text-center">
           Location: {location.locality ? `${location.locality}, ` : ""}{location.country_name}
         </div>

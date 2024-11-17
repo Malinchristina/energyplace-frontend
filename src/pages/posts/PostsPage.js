@@ -49,8 +49,6 @@ function PostsPage({ message, filter = "" }) {
           categoryFilter ? `&category=${categoryFilter}` : ""
         }${locationFilter ? `&location=${locationFilter}`: ""}`;
 
-        console.log("Fetching posts with endpoint:", endpoint);
-
         const { data } = await axiosReq.get(endpoint);
         if (isMounted) {
           setPosts(data);
