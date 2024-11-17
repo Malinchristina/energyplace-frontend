@@ -17,6 +17,7 @@ import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularPosts from "./PopularPosts";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 function PostsPage({ message, filter = "" }) {
@@ -27,6 +28,8 @@ function PostsPage({ message, filter = "" }) {
   const [locationFilter, setLocationFilter] = useState("");
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+
+  const currentUser = useCurrentUser();
  
   // Fetch the top liked posts from the API
   const fetchTopLikedPosts = useCallback(async () => {
@@ -68,7 +71,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, categoryFilter, locationFilter, pathname, fetchTopLikedPosts]);
+  }, [filter, query, categoryFilter, locationFilter, pathname, fetchTopLikedPosts, currentUser]);
 
 
   return (
