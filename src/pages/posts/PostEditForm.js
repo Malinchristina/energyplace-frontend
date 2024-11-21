@@ -39,7 +39,7 @@ function PostEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { title, content, image, location, locality, is_owner } = data;
+        const { title, content, image, location, is_owner } = data;
         
         if (is_owner) {
           setPostData({
@@ -48,7 +48,7 @@ function PostEditForm() {
             image,
             category: data.category?.id || "",
             location: location?.id || "",
-            locality: locality || "",
+            locality: location?.locality || "",
           });
         } else {
           history.push("/");
@@ -59,7 +59,7 @@ function PostEditForm() {
     };
 
     handleMount();
-  }, [history, id]);
+  }, [history, id,]);
 
   // Fetch categories and locations
   useEffect(() => {
@@ -108,6 +108,8 @@ function PostEditForm() {
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
+
+    console.log(...formData.entries());
 
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
