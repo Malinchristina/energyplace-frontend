@@ -6,10 +6,12 @@ import styles from "../../styles/PopularPosts.module.css";
 
 
 const PopularPosts = ({ topLikedPosts }) => {
-  if (!topLikedPosts.length) return null;
+  if (!Array.isArray(topLikedPosts) || topLikedPosts.length === 0) return null;
 
   return (
-    <Container className={`${appStyles.Content} ${styles.TopLikedPostsContainer}`}>
+    <Container
+      className={`${appStyles.Content} ${styles.TopLikedPostsContainer}`}
+    >
       <p>Top 5 Most Liked Posts</p>
       {topLikedPosts.map((post) => (
         <p key={post.id}>
@@ -21,7 +23,6 @@ const PopularPosts = ({ topLikedPosts }) => {
       ))}
     </Container>
   );
-}
-
+};
 
 export default PopularPosts;

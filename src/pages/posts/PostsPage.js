@@ -21,7 +21,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 function PostsPage({ message, filter = "" }) {
-  const [posts, setPosts] = useState({ results: [] });
+  const [posts, setPosts] = useState({ results: [], next: null });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [topLikedPosts, setTopLikedPosts] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState("");
@@ -34,11 +34,14 @@ function PostsPage({ message, filter = "" }) {
   // Fetch the top liked posts from the API
   const fetchTopLikedPosts = useCallback(async () => {
     try {
-      const { data } = await axiosReq.get("/posts/?ordering=-likes_count&limit=5");
-      const likedPosts = data.results.filter((post) => post.likes_count > 0);
+      const { data } = await axiosReq.get(
+        "/posts/?ordering=-likes_count&limit=5");
+      const likedPosts = Array.isArray(data.results)
+        ? data.results.filter((post) => post.likes_count > 0)
+        : [];
       setTopLikedPosts(likedPosts);
     } catch (err) {
-      console.log(err);
+      console.error("Error fetching top liked posts:", err);
     }
   }, []);
 
@@ -50,17 +53,28 @@ function PostsPage({ message, filter = "" }) {
       try {
         const endpoint = `/posts/?${filter}search=${query}${
           categoryFilter ? `&category=${categoryFilter}` : ""
-        }${locationFilter ? `&location=${locationFilter}`: ""}`;
-
+        }${locationFilter ? `&location=${locationFilter}` : ""}`;
+    
         const { data } = await axiosReq.get(endpoint);
-        if (isMounted) {
-          setPosts(data);
-        setHasLoaded(true);
+    
+        // Check if `data.results` exists, or if `data` itself is the array
+        if (Array.isArray(data.results)) {
+          if (isMounted) {
+            setPosts(data); // Use the standard pagination object
+          }
+        } else if (Array.isArray(data)) {
+          if (isMounted) {
+            setPosts({ results: data, next: null }); // Wrap data in pagination object
+          }
+        } else {
+          console.error("Unexpected API response:", data);
         }
+        setHasLoaded(true);
       } catch (err) {
         if (isMounted) console.log(err);
       }
     };
+    
 
     setHasLoaded(false);
     const timer = setTimeout(() => {
@@ -71,7 +85,8 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, categoryFilter, locationFilter, pathname, fetchTopLikedPosts, currentUser]);
+  }, [filter, query, categoryFilter, locationFilter,
+      pathname, fetchTopLikedPosts, currentUser]);
 
 
   return (
@@ -79,7 +94,9 @@ function PostsPage({ message, filter = "" }) {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         {/* PopularPosts only for mobile view */}
         <div className="d-lg-none">
-          <PopularPosts topLikedPosts={topLikedPosts} /> {/* Pass topLikedPosts */}
+          {Array.isArray(topLikedPosts) && topLikedPosts.length > 0 && (
+            <PopularPosts topLikedPosts={topLikedPosts} />
+          )}
         </div>
         {/* <i className={`fas fa-search ${styles.SearchIcon}`} /> */}
         <SearchBar
@@ -87,27 +104,30 @@ function PostsPage({ message, filter = "" }) {
           onChange={setQuery}
           placeholder="Search posts"
         />
-
         <FilterDropdown filterType="category" setFilter={setCategoryFilter} />
         <FilterDropdown filterType="location" setFilter={setLocationFilter} />
+  
         {hasLoaded ? (
           <>
-            {posts.results.length ? (
+            {Array.isArray(posts.results) && posts.results.length > 0 ? (
               <InfiniteScroll
-              children={posts.results.map((post) => (
-                <Post
-                  key={post.id}
-                  {...post}
-                  setPosts={setPosts}
-                  onLikeUnlike={fetchTopLikedPosts} // Pass function to refresh top liked posts
-                />
-              ))}
-              dataLength={posts.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!posts.next}
-              next={() => fetchMoreData(posts, setPosts)}
-            />
-          ) : (
+              children={posts.results.map((post) => {
+                console.log("Post being rendered:", post); // Add this debug log
+                return (
+                    <Post
+                        key={post.id}
+                        {...post}
+                        setPosts={setPosts}
+                        onLikeUnlike={fetchTopLikedPosts} // Pass function to refresh top liked posts
+                    />
+                );
+              })}
+                dataLength={posts.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!posts.next}
+                next={() => fetchMoreData(posts, setPosts)}
+              />
+            ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
               </Container>
@@ -120,7 +140,11 @@ function PostsPage({ message, filter = "" }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-      <PopularPosts topLikedPosts={topLikedPosts} />
+        {Array.isArray(topLikedPosts) && topLikedPosts.length > 0 ? (
+          <PopularPosts topLikedPosts={topLikedPosts} />
+        ) : (
+          <p>No top liked posts to display.</p>
+        )}
       </Col>
     </Row>
   );
