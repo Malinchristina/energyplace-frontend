@@ -112,7 +112,6 @@ function PostsPage({ message, filter = "" }) {
             {Array.isArray(posts.results) && posts.results.length > 0 ? (
               <InfiniteScroll
               children={posts.results.map((post) => {
-                console.log("Post being rendered:", post); // Add this debug log
                 return (
                     <Post
                         key={post.id}
