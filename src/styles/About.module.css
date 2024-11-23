@@ -1,0 +1,41 @@
+h2 {
+  text-align: center;
+  color: #124f4b;
+  margin-bottom: 25px;
+}
+
+.Spacer {
+  margin-top: 15px;
+}
+
+.Link {
+  color: #faa24f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.TwoColumns {
+  display: flex;
+  flex-direction: column; 
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+
+  .AboutContainer {
+    margin-top: 75px;
+    max-width: 600px; 
+    margin-left: auto; 
+    margin-right: auto; 
+  }
+
+  .TwoColumns {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .TwoColumns p {
+    flex: 1;
+    margin: 0;
+  }
+}

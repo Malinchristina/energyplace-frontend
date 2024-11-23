@@ -123,6 +123,14 @@ const NavBar = () => {
               >
                 <i className="fa-solid fa-house"></i>Home
               </NavLink>
+              <NavLink
+                exact
+                className={styles.NavLink}
+                activeClassName={styles.Active}
+                to="/about"
+              >
+                <i className="fa-solid fa-info-circle"></i>About
+              </NavLink>
               {currentUser ? loggedInIcons : loggedOutIcons}
             </Nav>
         </Navbar.Collapse>
