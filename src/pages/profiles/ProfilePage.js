@@ -16,6 +16,7 @@ import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../posts/Post";
+import ProfileStats from "../../components/ProfileStats";
 import PopularPosts from "../posts/PopularPosts";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
@@ -71,20 +72,11 @@ function ProfilePage() {
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
-          <Row className="justify-content-center no-gutters">
-            <Col xs={3} className="my-2">
-              <div>{profile?.posts_count}</div>
-              <div>posts</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div>{profile?.followers_count}</div>
-              <div>followers</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div>{profile?.following_count}</div>
-              <div>following</div>
-            </Col>
-          </Row>
+          <ProfileStats
+            posts_count={profile?.posts_count}
+            followers_count={profile?.followers_count}
+            following_count={profile?.following_count}
+          />
         </Col>
         <Col lg={3} className="text-lg-right">
           {currentUser &&

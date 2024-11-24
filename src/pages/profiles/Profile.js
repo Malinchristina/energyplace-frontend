@@ -4,6 +4,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import ProfileStats from "../../components/ProfileStats";
 import { Button } from "react-bootstrap";
 
 const Profile = (props) => {
@@ -14,27 +15,33 @@ const Profile = (props) => {
   const is_owner = currentUser?.username === owner;
 
   return (
-    <div className="my-3 d-flex align-items-center">
-      <div>
-        <Link className="align-self-center" to={`/profiles/${id}`}>
+    <div className={`my-3 ${styles.Profile}`}>
+      <div className="d-flex align-items-center">
+        <Link to={`/profiles/${id}`}>
           <Avatar src={image} height={imageSize} />
         </Link>
-      </div>
-      <div className={`mx-2 ${styles.WordBreak}`}>
-        <strong>{owner}</strong>
-      </div>
-      <div className="ml-auto">
+        <div className={`mx-2 ${styles.WordBreak}`}>
+          <strong>{owner}</strong>
+        </div>
         {currentUser && !is_owner && (
-          <Button
-            className={`${btnStyles.Button} ${
-              following_id ? btnStyles.BlackOutline : btnStyles.Black
-            }`}
-            onClick={() => {}}
-          >
-            {following_id ? "unfollow" : "follow"}
-          </Button>
+          <div className="ml-auto">
+            <Button
+              className={`${btnStyles.Button} ${
+                following_id ? btnStyles.BlackOutline : btnStyles.Black
+              }`}
+              onClick={() => {}}
+            >
+              {following_id ? "unfollow" : "follow"}
+            </Button>
+          </div>
         )}
       </div>
+      {/* Add ProfileStats */}
+      <ProfileStats
+        posts_count={profile.posts_count}
+        followers_count={profile.followers_count}
+        following_count={profile.following_count}
+      />
     </div>
   );
 };
