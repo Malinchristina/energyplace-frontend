@@ -11,6 +11,15 @@
   transform: scale(1.03);
 }
 
-@media screen {
-  
+@media screen and (min-width: 768px) {
+  .ProfileCol {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .ProfileCard {
+    margin: 15px auto;
+    max-width: 600px; 
+    text-align: center;
+  }
 }

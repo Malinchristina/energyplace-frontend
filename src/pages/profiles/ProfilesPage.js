@@ -43,7 +43,7 @@ function ProfilesPage() {
                 next={() => fetchMoreData(profiles, setProfiles)}
               >
                   {profiles.results.map((profile) => (
-                    <Col md={6} key={profile.id} className="mb-4">
+                    <Col md={12} key={profile.id} className="mb-4 ProfileCol">
                       <Link to={`/profiles/${profile.id}`} className="text-decoration-none">
                       <Card className={`${appStyles.Content} ${styles.ProfileCard}`}>
                         <Profile profile={profile} />
