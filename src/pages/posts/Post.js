@@ -26,6 +26,7 @@ const Post = (props) => {
     onLikeUnlike,
     category,
     location,
+    locality,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -109,7 +110,7 @@ const Post = (props) => {
         {location && (
         <>
         <div className="text-center">
-          Location: {location.locality ? `${location.locality}, ` : ""}{location.country_name}
+          Location: {locality ? `${locality}, ` : ""}{location.country_name}
         </div>
         </>
         )}
