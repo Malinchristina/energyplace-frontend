@@ -4,7 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-// import signup from "../../assets/signup.webp";
 import bg from "../../assets/bg.webp"
 
 
@@ -134,7 +133,6 @@ const SignUpForm = () => {
       >
         <Image
           className={`${appStyles.FillerImage}`}
-          // src={signup}
           src={bg}
 
         />

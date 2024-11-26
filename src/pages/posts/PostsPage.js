@@ -60,11 +60,11 @@ function PostsPage({ message, filter = "" }) {
         // Check if `data.results` exists, or if `data` itself is the array
         if (Array.isArray(data.results)) {
           if (isMounted) {
-            setPosts(data); // Use the standard pagination object
+            setPosts(data);
           }
         } else if (Array.isArray(data)) {
           if (isMounted) {
-            setPosts({ results: data, next: null }); // Wrap data in pagination object
+            setPosts({ results: data, next: null });
           }
         } else {
           console.error("Unexpected API response:", data);
@@ -98,7 +98,6 @@ function PostsPage({ message, filter = "" }) {
             <PopularPosts topLikedPosts={topLikedPosts} />
           )}
         </div>
-        {/* <i className={`fas fa-search ${styles.SearchIcon}`} /> */}
         <SearchBar
           value={query}
           onChange={setQuery}

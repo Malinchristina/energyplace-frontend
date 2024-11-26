@@ -1,6 +1,5 @@
 .App {
   font-family: "Roboto", sans-serif;
-  /* background-color: #cdd5c5 ; */
   background-image: url("../src/assets/bg_image.webp");
   min-height: 100vh;
 }
@@ -9,7 +8,6 @@
   padding-top: 125px;
 }
 
-/* Change to my own styles */
 .Content {
   background-color: #ffffff;
   padding: 10px;
@@ -73,7 +71,6 @@ figure {
 }
 
 /* scrollbar */
-/* Change to my own styles */
 *::-webkit-scrollbar {
   width: 5px;
 }

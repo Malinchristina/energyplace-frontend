@@ -40,7 +40,6 @@ function PostCreateForm() {
   const history = useHistory();
 
   // Fetch categories from the backend on component mount
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -156,31 +155,6 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
-
-      {/* <Form.Group>
-        <Row>
-          <Form.Label>Location</Form.Label>
-          <Form.Control
-            as="select"
-            name="location"
-            value={postData.location}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select a location</option>
-            {locations.map((loc) => (
-              <option key={loc.code} value={loc.code}>
-                {loc.name}
-              </option>
-            ))}
-          </Form.Control>
-        </Row>
-      </Form.Group>
-      {errors?.category?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))} */}
 
       <Form.Group>
         <Row>
