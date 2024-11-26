@@ -16,14 +16,34 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
+import PopularPosts from "./PopularPosts";
 
 function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
-
+  const [topLikedPosts, setTopLikedPosts] = useState([]); 
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
+
+  // Fetch top liked posts
+  useEffect(() => {
+    const fetchTopLikedPosts = async () => {
+      try {
+        const { data } = await axiosReq.get(
+          "/posts/?ordering=-likes_count&limit=5"
+        );
+        const likedPosts = Array.isArray(data.results)
+          ? data.results.filter((post) => post.likes_count > 0)
+          : [];
+        setTopLikedPosts(likedPosts);
+      } catch (err) {
+        console.error("Error fetching top liked posts:", err);
+      }
+    };
+
+    fetchTopLikedPosts();
+  }, []);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -45,7 +65,12 @@ function PostPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles for mobile</p>
+         {/* PopularPosts for mobile */}
+         <div className="d-lg-none">
+          {Array.isArray(topLikedPosts) && topLikedPosts.length > 0 && (
+            <PopularPosts topLikedPosts={topLikedPosts} />
+          )}
+        </div>
         <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container className={appStyles.Content}>
           {currentUser ? (
@@ -82,7 +107,12 @@ function PostPage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        Popular profiles for desktop
+        {/* PopularPosts for desktop */}
+        {Array.isArray(topLikedPosts) && topLikedPosts.length > 0 ? (
+          <PopularPosts topLikedPosts={topLikedPosts} />
+        ) : (
+          <p>No top liked posts to display.</p>
+        )}
       </Col>
     </Row>
   );
