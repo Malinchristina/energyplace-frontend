@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import bg from "../../assets/bg.webp"
+import signup_no_bg from "../../assets/signup_no_bg.webp"
 
 
 import {
@@ -133,7 +133,7 @@ const SignUpForm = () => {
       >
         <Image
           className={`${appStyles.FillerImage}`}
-          src={bg}
+          src={signup_no_bg}
 
         />
       </Col>
