@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+## Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+EnergyPlace is a social platform designed to connect people through shared experiences and a passion for discovering inspiring places.  It provides a space to share your favorite energy-boosting locations, whether it's a tranquil nature spot, an exciting sporting venue, a vibrant music scene, a comforting café, or any place that recharges your spirit. 
 
-## Available Scripts
+**Table of Contents:**
 
-In the project directory, you can run:
+- **[User Experience (UX)](#user-experience-ux)**
+    - **[Design Thinking](#design-thinking)**
+        - **[Mobile First](#mobile-first)** 
+        - **[Design](#design)** 
+        - **[Colors](#colors)** 
+        - **[Typography](#typography)**
+- **[Features](#features)**
+  - **[Future Features](#future-features)** 
+- **[Project Planning](#project-planning)** 
+  - **[Wireframes](#wireframes)**
+    - **[Mobile](#mobile)**
+    - **[Tablet](#tablet)**
+- **[Agile Methodologies](#agile-methodologies)** 
+  - **[Kanban Board](#kanban-board)**
+  - **[Epics](#epics)**
+  - **[User Stories](#user-stories)**
+  - **[MoSCoW Prioritization](#moscow-prioritization)**
+- **[Technologies Used](#technologies-used)**
+  - **[Languages](#languages)** 
+  - **[Frameworks](#frameworks)**
+  - **[Libraries](#libraries)**
+- **[Testing](#testing)**
+- **[Deployment](#deployment)** 
+  - **[GitHub](#github)**
+  - **[Heroku](#heroku)**
+- **[Credits](#credits)** 
+  - **[Code](#code)**
+  - **[Media](#media)**
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* **Home/Feed:** The `/` route displays posts (PostsPage). Users can search and filter posts by category and location using the SearchBar and FilterDropdown components.
+* **Post Detail:** Viewing individual posts PostPage offers details, comments Comment components, and liking/unliking functionality.
+* **Profile Pages:** Users have profile pages ProfilePage to display their information and posts. Following and unfollowing functionality is handled using backend API interactions.
+* **Profile Editing:** Users can edit their profile details ProfileEditForm, passwords UserPasswordForm, and usernames UsernameForm.
+* **Post Creation:** The posts/create route allows users to create new posts PostCreateForm.
+* **Post Editing:** Users can edit their own posts PostEditForm.
+* **Commenting:** Users can add comments to posts CommentCreateForm and edit their own comments CommentEditForm.
+* **Liking:** Users can like and unlike posts.
+* **Authentication:** The app includes full user authentication—sign-up SignUpForm, sign-in SignInForm, and sign-out (NavBar).
+* **About:** An informational page explaining EnergyPlace About.js.
+* **404 (Not Found):** A custom 404 page is implemented to handle invalid routes NotFound.js.
