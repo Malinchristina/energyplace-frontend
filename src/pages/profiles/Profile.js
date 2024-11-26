@@ -5,7 +5,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import ProfileStats from "../../components/ProfileStats";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const Profile = (props) => {
   const { profile, imageSize = 55 } = props;

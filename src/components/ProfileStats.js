@@ -1,5 +1,7 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 
 const ProfileStats = ({ posts_count, followers_count, following_count }) => {
   return (

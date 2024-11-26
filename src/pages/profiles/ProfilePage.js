@@ -11,7 +11,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 import InfiniteScroll from "react-infinite-scroll-component";

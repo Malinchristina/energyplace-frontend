@@ -1,5 +1,7 @@
 import React from 'react';
-import { Navbar, Container, Nav } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
 import logo_no_bg from '../assets/logo_no_bg.webp';
 import styles from '../styles/NavBar.module.css';
 import { NavLink } from "react-router-dom";

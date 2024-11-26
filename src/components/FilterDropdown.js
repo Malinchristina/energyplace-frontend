@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import appStyles from "../App.module.css";
 import styles from "../../src/styles/FilterDropDown.module.css";
 
