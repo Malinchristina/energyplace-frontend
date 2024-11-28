@@ -92,17 +92,17 @@ function PostsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <SearchBar
+          value={query}
+          onChange={setQuery}
+          placeholder="Search posts"
+        />
         {/* PopularPosts only for mobile view */}
         <div className="d-lg-none">
           {Array.isArray(topLikedPosts) && topLikedPosts.length > 0 && (
             <PopularPosts topLikedPosts={topLikedPosts} />
           )}
         </div>
-        <SearchBar
-          value={query}
-          onChange={setQuery}
-          placeholder="Search posts"
-        />
         <FilterDropdown filterType="category" setFilter={setCategoryFilter} />
         <FilterDropdown filterType="location" setFilter={setLocationFilter} />
   
