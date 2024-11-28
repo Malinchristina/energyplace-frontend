@@ -2,6 +2,24 @@
   margin-bottom: 20px;
 }
 
+.CollapsibleHeader {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.ArrowIcon {
+  font-size: 0.7rem;
+  color: black;
+  transition: transform 0.3s ease-in-out;
+}
+
+.CollapsibleHeader:hover .ArrowIcon {
+  color: #124f4b;
+}
+
 .PostLink {
   color: #124f4b;
   text-decoration: none;
