@@ -2,6 +2,7 @@
   font-family: "Roboto", sans-serif;
   background-image: url("../src/assets/bg_image.webp");
   min-height: 100vh;
+  padding: 0;
 }
 
 .Main {
@@ -13,6 +14,18 @@
   padding: 10px;
   border-radius: 10px;
   border: 2px solid #35c7c3;
+}
+
+/* Add padding for smaller screens */
+@media (max-width: 768px) {
+  .App {
+    padding: 10px; /* Add margin/padding around the edges globally */
+  }
+
+  .Content {
+    margin: 0 auto; /* Center the content if needed */
+    max-width: 100%; /* Ensure it doesn't overflow */
+  }
 }
 
 .FillerImage {
