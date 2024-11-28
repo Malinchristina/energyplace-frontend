@@ -36,7 +36,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/posts/create"
       >
-        <i className="fa-regular fa-square-plus"></i>Post your EnergyPlace
+        <i className="fa-regular fa-square-plus"></i>Add post
       </NavLink>
   );
 
