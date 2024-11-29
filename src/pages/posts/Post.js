@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import appStyles from "../../App.module.css";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import Alert from "react-bootstrap/alert";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -35,6 +37,8 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const [successMessage, setSuccessMessage] = useState("");
+
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -43,7 +47,10 @@ const Post = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
-      history.goBack();
+      setSuccessMessage("Post deleted successfully."); // Set success message
+    setTimeout(() => {
+      history.goBack(); // Go back after showing the message
+    }, 2000);
     } catch (err) {
       console.log(err);
     }
@@ -84,81 +91,89 @@ const Post = (props) => {
   };
 
   return (
-    <Card className={styles.Post}>
-      <Card.Body>
-        <Media className="align-items-center justify-content-between">
-          <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={55} />
-            {owner}
-          </Link>
-          <div className="d-flex align-items-center">
-            <span>{updated_at}</span>
-            {is_owner && postPage && (
-              <MoreDropdown
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              />
-            )}
+    <>
+      {/* Display success message */}
+      {successMessage && (
+        <Alert variant="success" className={appStyles.CutstomAlert}>
+          {successMessage}
+        </Alert>
+      )}
+      <Card className={styles.Post}>
+        <Card.Body>
+          <Media className="align-items-center justify-content-between">
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profile_image} height={55} />
+              {owner}
+            </Link>
+            <div className="d-flex align-items-center">
+              <span>{updated_at}</span>
+              {is_owner && postPage && (
+                <MoreDropdown
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
+              )}
+            </div>
+          </Media>
+        </Card.Body>
+        <Link to={`/posts/${id}`}>
+          <Card.Img src={image} alt={title} />
+        </Link>
+        <Card.Body>
+          {title && <Card.Title className="text-center">{title}</Card.Title>}
+          {category && (
+            <div className="text-center">Category: {category.name}</div>
+          )}
+          {location && (
+          <>
+          <div className="text-center">
+            Location: {locality ? `${locality}, ` : ""}{location.country_name}
           </div>
-        </Media>
-      </Card.Body>
-      <Link to={`/posts/${id}`}>
-        <Card.Img src={image} alt={title} />
-      </Link>
-      <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {category && (
-          <div className="text-center">Category: {category.name}</div>
-        )}
-        {location && (
-        <>
-        <div className="text-center">
-          Location: {locality ? `${locality}, ` : ""}{location.country_name}
-        </div>
-        </>
-        )}
-        {content && <Card.Text>{content}</Card.Text>}
-        <div className={styles.PostBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't like your own post!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          ) : like_id ? (
-            <span onClick={handleUnlike}>
-              <i className={`fas fa-heart ${styles.Heart}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to like posts!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
+          </>
           )}
-          {likes_count}
-          {currentUser ? (
-          <Link to={`/posts/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to comment on posts!</Tooltip>}
-            >
+          {content && <Card.Text>{content}</Card.Text>}
+          <div className={styles.PostBar}>
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't like your own post!</Tooltip>}
+              >
+                <i className="far fa-heart" />
+              </OverlayTrigger>
+            ) : like_id ? (
+              <span onClick={handleUnlike}>
+                <i className={`fas fa-heart ${styles.Heart}`} />
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleLike}>
+                <i className={`far fa-heart ${styles.HeartOutline}`} />
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to like posts!</Tooltip>}
+              >
+                <i className="far fa-heart" />
+              </OverlayTrigger>
+            )}
+            {likes_count}
+            {currentUser ? (
+            <Link to={`/posts/${id}`}>
               <i className="far fa-comments" />
-            </OverlayTrigger>
-          )}
-          {comments_count}
-        </div>
-      </Card.Body>
-    </Card>
+            </Link>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to comment on posts!</Tooltip>}
+              >
+                <i className="far fa-comments" />
+              </OverlayTrigger>
+            )}
+            {comments_count}
+          </div>
+        </Card.Body>
+      </Card>
+    </>
   );
 };
 

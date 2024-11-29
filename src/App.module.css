@@ -28,6 +28,14 @@
   }
 }
 
+.CustomAlert {
+  background-color: #35c7c3;
+  color: #35291b;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+}
+
 .FillerImage {
   object-fit: cover;
   height: 100%;
