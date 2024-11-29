@@ -1,6 +1,6 @@
 .App {
   font-family: "Roboto", sans-serif;
-  background-image: url("../src/assets/bg_image.webp");
+  background: linear-gradient(to right, #FDD166, #22D59B, #1091B0);
   min-height: 100vh;
   padding: 0;
 }
