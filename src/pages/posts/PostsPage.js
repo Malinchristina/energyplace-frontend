@@ -99,9 +99,14 @@ function PostsPage({ message, filter = "" }) {
         />
         {/* PopularPosts only for mobile view */}
         <div className="d-lg-none">
-          {Array.isArray(topLikedPosts) && topLikedPosts.length > 0 && (
+        {topLikedPosts.length === 0 && !hasLoaded ? (
+          <Asset spinner /> // Show spinner while topLikedPosts is loading
+        ) : (
+          Array.isArray(topLikedPosts) &&
+          topLikedPosts.length > 0 && (
             <PopularPosts topLikedPosts={topLikedPosts} />
-          )}
+          )
+        )}
         </div>
         <FilterDropdown filterType="category" setFilter={setCategoryFilter} />
         <FilterDropdown filterType="location" setFilter={setLocationFilter} />
@@ -138,10 +143,15 @@ function PostsPage({ message, filter = "" }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        {Array.isArray(topLikedPosts) && topLikedPosts.length > 0 ? (
-          <PopularPosts topLikedPosts={topLikedPosts} />
+        {topLikedPosts.length === 0 && !hasLoaded ? (
+          <Asset spinner /> // Show spinner while topLikedPosts is loading
         ) : (
-          <p>No top liked posts to display.</p>
+          Array.isArray(topLikedPosts) &&
+          topLikedPosts.length > 0 ? (
+            <PopularPosts topLikedPosts={topLikedPosts} />
+          ) : (
+            <p>No top liked posts to display.</p>
+          )
         )}
       </Col>
     </Row>

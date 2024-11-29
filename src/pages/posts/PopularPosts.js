@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PopularPosts.module.css";
+import Asset from "../../components/Asset";
 
 
-const PopularPosts = ({ topLikedPosts }) => {
+const PopularPosts = ({ topLikedPosts, loading }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -18,6 +19,10 @@ const PopularPosts = ({ topLikedPosts }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  if (loading) {
+    return <Asset spinner />;
+  }
 
   if (!Array.isArray(topLikedPosts) || topLikedPosts.length === 0) return null;
 

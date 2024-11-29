@@ -21,7 +21,8 @@ import PopularPosts from "./PopularPosts";
 function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
-  const [topLikedPosts, setTopLikedPosts] = useState([]); 
+  const [topLikedPosts, setTopLikedPosts] = useState([]);
+  const [topLikedLoading, setTopLikedLoading] = useState(true);
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
@@ -39,6 +40,8 @@ function PostPage() {
         setTopLikedPosts(likedPosts);
       } catch (err) {
         console.error("Error fetching top liked posts:", err);
+      } finally {
+        setTopLikedLoading(false); // Set loading to false
       }
     };
 
@@ -67,8 +70,12 @@ function PostPage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
          {/* PopularPosts for mobile */}
          <div className="d-lg-none">
-          {Array.isArray(topLikedPosts) && topLikedPosts.length > 0 && (
+         {topLikedLoading ? (
+            <Asset spinner /> // Show spinner while loading
+          ) : Array.isArray(topLikedPosts) && topLikedPosts.length > 0 ? (
             <PopularPosts topLikedPosts={topLikedPosts} />
+          ) : (
+            <p>No top liked posts to display.</p>
           )}
         </div>
         <Post {...post.results[0]} setPosts={setPost} postPage />
@@ -108,7 +115,9 @@ function PostPage() {
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         {/* PopularPosts for desktop */}
-        {Array.isArray(topLikedPosts) && topLikedPosts.length > 0 ? (
+        {topLikedLoading ? (
+          <Asset spinner /> // Show spinner while loading
+        ) : Array.isArray(topLikedPosts) && topLikedPosts.length > 0 ? (
           <PopularPosts topLikedPosts={topLikedPosts} />
         ) : (
           <p>No top liked posts to display.</p>

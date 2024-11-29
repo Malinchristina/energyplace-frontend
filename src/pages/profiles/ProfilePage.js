@@ -27,13 +27,11 @@ function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
   const [topLikedPosts, setTopLikedPosts] = useState([]);
-  
+  const [topLikedLoading, setTopLikedLoading] = useState(true);
   const currentUser = useCurrentUser();
   const { id } = useParams();
-
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { pageProfile } = useProfileData();
-
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
 
@@ -52,9 +50,12 @@ function ProfilePage() {
         }));
         setProfilePosts(profilePosts);
         setTopLikedPosts(likedPosts.results || []);
-        setHasLoaded(true);
+        // setHasLoaded(true);
       } catch (err) {
         console.log(err);
+      } finally {
+        setTopLikedLoading(false); 
+        setHasLoaded(true);
       }
     };
     fetchData();
@@ -131,8 +132,12 @@ function ProfilePage() {
     <Row className="no-gutters">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <div className="d-lg-none">
-          <PopularPosts topLikedPosts={topLikedPosts} mobile />
-          </div>
+          {topLikedLoading ? (
+            <Asset spinner />
+          ) : (
+            <PopularPosts topLikedPosts={topLikedPosts} mobile />
+          )}  
+        </div>
         <Container className={appStyles.Content}>
           {hasLoaded ? (
             <>
@@ -145,7 +150,11 @@ function ProfilePage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-      <PopularPosts topLikedPosts={topLikedPosts} />
+        {topLikedLoading ? (
+          <Asset spinner />
+        ) : (
+          <PopularPosts topLikedPosts={topLikedPosts} />
+        )} 
       </Col>
     </Row>
   );
