@@ -7,10 +7,9 @@ import Avatar from "../../components/Avatar";
 import ProfileStats from "../../components/ProfileStats";
 import Button from "react-bootstrap/Button";
 
-const Profile = (props) => {
+const Profile = (props, handleFollowToggle) => {
   const { profile, imageSize = 55 } = props;
   const { id, following_id, image, owner } = profile;
-
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
@@ -21,7 +20,9 @@ const Profile = (props) => {
           <Avatar src={image} height={imageSize} />
         </Link>
         <div className={`mx-2 ${styles.WordBreak}`}>
-          <strong>{owner}</strong>
+          <Link to={`/profiles/${id}`} className={styles.OwnerName}>
+            <strong>{owner}</strong>
+          </Link>
         </div>
         {currentUser && !is_owner && (
           <div className="ml-auto">
@@ -29,7 +30,7 @@ const Profile = (props) => {
               className={`${btnStyles.Button} ${
                 following_id ? btnStyles.BlackOutline : btnStyles.Black
               }`}
-              onClick={() => {}}
+              onClick={props.handleFollowToggle}
             >
               {following_id ? "unfollow" : "follow"}
             </Button>

@@ -3,7 +3,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/ProfilesPage.module.css";
 import Profile from "./Profile";
@@ -32,6 +31,27 @@ function ProfilesPage() {
     fetchProfiles();
   }, [query]);
 
+  const handleFollowToggle = async (profileId, isFollowing) => {
+    try {
+      if (isFollowing) {
+        await axiosReq.delete(`/followers/${profileId}/`);
+      } else {
+        await axiosReq.post(`/followers/`, { followed: profileId });
+      }
+      // Update the state to reflect the change
+      setProfiles((prevProfiles) => ({
+        ...prevProfiles,
+        results: prevProfiles.results.map((profile) =>
+          profile.id === profileId
+            ? { ...profile, following_id: isFollowing ? null : profileId }
+            : profile
+        ),
+      }));
+    } catch (err) {
+      console.error("Error toggling follow status:", err);
+    }
+  };
+  
   return (
     <Row className="h-100 no-gutters">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -47,11 +67,12 @@ function ProfilesPage() {
               >
                   {profiles.results.map((profile) => (
                     <Col md={12} key={profile.id} className="mb-4 ProfileCol">
-                      <Link to={`/profiles/${profile.id}`} className="text-decoration-none">
                       <Card className={`${appStyles.Content} ${styles.ProfileCard}`}>
-                        <Profile profile={profile} />
+                      <Profile
+                        profile={profile}
+                        handleFollowToggle={() => handleFollowToggle(profile.id, !!profile.following_id)}
+                      />
                       </Card>
-                      </Link>
                     </Col>
                   ))}
     
