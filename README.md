@@ -1,4 +1,6 @@
-## Introduction
+# EnergyPlace
+
+![Mockup](documentation/readme/mockup.png)
 
 EnergyPlace is a social platform designed to connect people through shared experiences and a passion for discovering inspiring places.  It provides a space to share your favorite energy-boosting locations, whether it's a tranquil nature spot, an exciting sporting venue, a vibrant music scene, a comforting café, or any place that recharges your spirit.
 
@@ -13,7 +15,7 @@ View [API backend](https://github.com/Malinchristina/EnergyPlace-API)
 
 ## Table of Contents
 
-- [Introduction](#introduction)
+- [EnergyPlace](#energyplace)
 - [User Experience (UX)](#user-experience-ux)
     - [Design Thinking](#design-thinking)
         - [Mobile First](#mobile-first)
@@ -22,8 +24,15 @@ View [API backend](https://github.com/Malinchristina/EnergyPlace-API)
         - [Typography](#typography)
     - [Project Planning](#project-planning)
       - [Wireframes](#wireframes)
-      - [Mobile](#mobile)
-      - [Tablet](#tablet)
+        - [Sign Up Page](#wireframe-sign-up-page)
+        - [Sign In Page](#wireframe-sign-in-page)
+        - [Add Post (Mobile)](#wireframe-add-post-mobile)
+        - [Home Feed & Likes](#wireframe-home-feed-likes)
+        - [About Page](#wireframe-about-page)
+        - [Profile Page](#wireframe-profile-page)
+        - [Profiles Page](#wireframe-profiles-page)
+        - [Large Screen Layout](#wireframe-large-screen-layout)
+        - [Add Post (Large Screen)](#wireframe-add-post-large-screen)
 - [Features](#features)
   - [Home](#home)
   - [About](#about)
@@ -100,6 +109,89 @@ The color scheme for the project was inspired by the logo. Colors were selected 
 
 The typography used in the project is the [Roboto](https://fonts.google.com/specimen/Roboto) font. It was chosen for its clean and modern look, ensuring readability and a professional appearance across the application.
 
+## Project planning
+
+### Wireframes
+
+[Balsamiq](https://balsamiq.com/) was used to create the initial design for the app. A mobile-first approach was implemented, and the designs for larger screens were adapted based on the mobile layout.
+
+<a id="wireframe-sign-up-page"></a>
+<details>
+  <summary>Wireframe: Sign Up Page</summary>
+
+  ![Sign Up Wireframe](documentation/readme/wf_signup.png)
+
+</details>
+
+<a id="wireframe-sign-in-page"></a>
+<details>
+  <summary>Wireframe: Sign In Page</summary>
+
+  ![Sign In Wireframe](documentation/readme/wf_signin.png)
+
+</details>
+
+<a id="wireframe-add-post-mobile"></a>
+<details>
+  <summary>Wireframe: Add Post (Mobile)</summary>
+
+  ![Add Post Mobile Wireframe](documentation/readme/wf_add_post.png)
+
+</details>
+
+<a id="wireframe-home-feed-likes"></a>
+<details>
+  <summary>Wireframe: Home Feed & Likes</summary>
+
+  ![Home Feed & Likes Wireframe](documentation/readme/wf_home_feed_likes.png)
+
+</details>
+
+<a id="wireframe-about-page"></a>
+<details>
+  <summary>Wireframe: About Page</summary>
+
+  ![About Wireframe](documentation/readme/wf_about.png)
+
+</details>
+
+<a id="wireframe-profile-page"></a>
+<details>
+  <summary>Wireframe: Profile Page</summary>
+
+  ![Profile Wireframe](documentation/readme/wf_profile.png)
+
+</details>
+
+<a id="wireframe-profiles-page"></a>
+<details>
+  <summary>Wireframe: Profiles Page</summary>
+
+  ![Profiles Wireframe](documentation/readme/wf_profiles.png)
+
+</details>
+<br>
+
+The primary difference in the layout for larger screens is the positioning of the "Top 5 Popular Posts" section. On larger screens, this section appears on the right-hand side of the screen, whereas on mobile screens, it is displayed above the posts for better accessibility and usability.
+
+<a id="wireframe-large-screen-layout"></a>
+<details>
+  <summary>Wireframe: Large Screen Layout</summary>
+
+  ![Large Screen Wireframe](documentation/readme/wf_large_screen.png)
+
+</details>
+<br>
+
+On larger screens, the Add Post page layout adjusts to make optimal use of the available space. The section containing the title, location, and content fields is placed on the right-hand side of the screen, while the image upload and preview area remains on the left.
+
+<a id="wireframe-add-post-large-screen"></a>
+<details>
+  <summary>Wireframe: Add Post (Large Screen)</summary>
+
+  ![Add Post Large Screen Wireframe](documentation/readme/wf_add_post_lg.png)
+
+</details>
 
 ## Features
 
@@ -285,6 +377,10 @@ The EnergyPlace frontend uses the following technologies, chosen for their perfo
 - **Axios:**  Simplifies API calls to the backend.
 - **jwt-decode:** Decodes JWTs for secure authentication.
 - **react-infinite-scroll-component:**  Implements infinite scrolling for enhanced user experience.
+
+## Testing
+
+Find the test file [here](TESTING.md)
 
 ## Deployment
 
