@@ -57,7 +57,7 @@ View [API backend](https://github.com/Malinchristina/EnergyPlace-API)
   - [GitHub](#github)
   - [Heroku](#heroku)
 - [Credits](#credits)
-  - [Tools & Programs](#tools-and-programs)
+  - [Tools and Programs](#tools-and-programs)
   - [Inspiration](#inspiration)
   - [How to](#how-to)
   - [Acknowledgments](#acknowledgements)
@@ -425,17 +425,22 @@ The repository was created and stored on GitHub. Any changes made in VS Code was
 
 ## Credits
 
-### Tools & Programs
+### Tools and Programs
+
 - Visual Studio Code (VS Code) - primary code editor.
 - [ChatGPT](https://chatgpt.com/) for logo.
 - [Phind](https://www.phind.com/) helped locate relevant resources (e.g., GeeksforGeeks, Stack Overflow) for efficient problem-solving.
 - [Coolors](https://coolors.co/) - color palette generation.
 - [Color Picker](https://imagecolorpicker.com/)
+- [FontAwesome](https://fontawesome.com/) icons were used throughout the application for various UI elements.
+- [Favicon](https://favicon.io/) was used to create the favicon for the app.
 
 ### Inspiration
+
 - Most inspiration comes from Code Institutes Moments walkthrough project.
 
 ### How to
+
 - [React](https://17.reactjs.org/)
 - [React Bootstrap](https://react-bootstrap-v4.netlify.app/getting-started/introduction/)
 - Net Ninjas [full react tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d)
