@@ -25,6 +25,88 @@ The website has passed the accessibility checks with **no errors** and **no cont
   
 </details>
 
+### Lighthouse
+
+Lighthouse was used to analyze the performance, accessibility, and SEO of the web application.
+
+<details>
+  <summary>Sign up</summary>
+  
+  ![Sign up](documentation/test_images/signup.png)
+  
+</details>
+
+<details>
+  <summary>Sign in</summary>
+  
+  ![Sign in](documentation/test_images/signin.png)
+  
+</details>
+
+<details>
+  <summary>Home</summary>
+  
+  ![Home](documentation/test_images/home.png)
+  
+</details>
+
+<details>
+  <summary>About</summary>
+  
+  ![About](documentation/test_images/about.png)
+  
+</details>
+
+<details>
+  <summary>Add post</summary>
+  
+  ![Add post](documentation/test_images/create_post.png)
+  
+</details>
+
+<details>
+  <summary>Feed</summary>
+  
+  ![Feed](documentation/test_images/feed.png)
+  
+</details>
+
+<details>
+  <summary>Liked</summary>
+  
+  ![Liked](documentation/test_images/liked.png)
+  
+</details>
+
+<details>
+  <summary>Post</summary>
+  
+  ![Post](documentation/test_images/posts_id.png)
+  
+</details>
+
+<details>
+  <summary>Profile</summary>
+  
+  ![Profile](documentation/test_images/profile.png)
+  
+</details>
+
+<details>
+  <summary>Profiles</summary>
+  
+  ![Profiles](documentation/test_images/profiles.png)
+  
+</details>
+
+<details>
+  <summary>Profiles id</summary>
+  
+  ![Profiles id](documentation/test_images/profiles_id.png)
+  
+</details>
+
+
 
 ## Epics & User Stories
 
