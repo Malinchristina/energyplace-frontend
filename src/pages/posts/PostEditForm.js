@@ -109,8 +109,6 @@ function PostEditForm() {
       formData.append("image", imageInput.current.files[0]);
     }
 
-    console.log(...formData.entries());
-
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
