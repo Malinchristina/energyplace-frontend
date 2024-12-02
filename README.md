@@ -47,6 +47,9 @@ View [API backend](https://github.com/Malinchristina/EnergyPlace-API)
   - [Commenting](#commenting)
   - [404 (Not Found)](#not-found)
   - [Future Feature](#future-feature)
+  - [Features in images](#features-in-images)
+    - [Mobile](#mobile)
+    - [Large screen](#large-screen)
 - [Agile Methodologies](#agile-methodologies)
 - [Technologies Used](#technologies-used)
   - [Languages](#languages)
@@ -88,6 +91,13 @@ EnergyPlace was designed with a mobile-first approach, ensuring optimal user exp
 
 - **Collapsible Top 5 Component:**  
   To conserve screen space, the "Top 5 Most Liked Posts" component is collapsible on mobile devices. This allows users to toggle its visibility, providing easy access while keeping the interface uncluttered.
+
+  <details>
+  <summary>Top5</summary>
+  
+  ![Top5](documentation/readme/collapsed_top5.png)
+  
+</details>
 
 - **Right-Aligned Navigation Menu:**  
   The navigation bar opens to the right, aligning with the user’s current position when interacting with the app on mobile. This decision prioritizes convenience and accessibility for one-handed use.
@@ -213,7 +223,7 @@ On larger screens, the Add Post page layout adjusts to make optimal use of the a
 <details>
   <summary>About</summary>
 
-  The `/about` route displays information about the EnergyPlace application and its purpose through the `About.js` component.  
+  The `/about` route displays information about the EnergyPlace application and its purpose through the `About.js` component.
 
 </details>
 
@@ -357,6 +367,130 @@ These features will allow users to easily see their connections within the app, 
 
 </details>
 
+### Features in images
+
+#### **Mobile**
+<details>
+  <summary>Home</summary>
+  
+  ![Home](documentation/readme/home.png)
+  
+</details>
+
+<details>
+  <summary>About</summary>
+  
+  ![About](documentation/readme/about.png)
+  
+</details>
+
+<details>
+  <summary>Feed</summary>
+  
+  ![Feed](documentation/readme/feed.png)
+  
+</details>
+
+<details>
+  <summary>Liked</summary>
+  
+  ![Liked](documentation/readme/liked.png)
+  
+</details>
+
+<details>
+  <summary>Profiles</summary>
+  
+  ![Profiles](documentation/readme/profiles.png)
+  
+</details>
+
+<details>
+  <summary>Post</summary>
+  
+  ![Post](documentation/readme/post.png)
+  
+</details>
+
+<details>
+  <summary>Own Profile</summary>
+  
+  ![Own Profile](documentation/readme/own_profile.png)
+  
+</details>
+ 
+ <details>
+  <summary>Menu signed in</summary>
+  
+  ![Menu signed in](documentation/readme/menu_signedin.png)
+  
+</details>
+
+<details>
+  <summary>Menu signed out</summary>
+  
+  ![Menu signed out](documentation/readme/menu_not_li.png)
+  
+</details>
+
+<details>
+  <summary>Sign in</summary>
+  
+  ![Sign in](documentation/readme/signin.png)
+  
+</details>
+
+<details>
+  <summary>Sign up</summary>
+  
+  ![Sign up](documentation/readme/signup.png)
+  
+</details>
+
+#### **Large screen**
+
+<details>
+  <summary>Home lg</summary>
+  
+  ![Home](documentation/readme/home_lg.png)
+  
+</details>
+
+<details>
+  <summary>Add post</summary>
+  
+  ![Add post](documentation/readme/add_post_lg.png)
+  
+</details>
+
+<details>
+  <summary>Own Profile lg</summary>
+  
+  ![Own Profile lg](documentation/readme/own_profile_lg.png)
+  
+</details>
+
+<details>
+  <summary>Users profile</summary>
+  
+  ![Users profile](documentation/readme/users_profile_lg.png)
+  
+</details>
+
+<details>
+  <summary>Sign in lg</summary>
+  
+  ![Sign in](documentation/readme/signin_lg.png)
+  
+</details>
+
+<details>
+  <summary>Sign up lg</summary>
+  
+  ![Sign up](documentation/readme/signup_lg.png)
+  
+</details>
+
 ### Agile Methodologies
 
 An Agile workflow, managed using a [Kanban board](https://github.com/users/Malinchristina/projects/6), guided this project's iterative development. While [MoSCoW prioritization](https://en.wikipedia.org/wiki/MoSCoW_method) wasn't formally tracked on the Kanban board itself, this method was applied mentally throughout the user story development and task assignment process, with the following categorization:
@@ -403,7 +537,7 @@ The repository was created and stored on GitHub. Any changes made in VS Code was
 * git commit -m "Commit message"
 * git push
 
-### Heroku Deployment
+### Heroku
 
 #### Steps to Deploy:
 
@@ -413,6 +547,14 @@ The repository was created and stored on GitHub. Any changes made in VS Code was
 
    Create a new app in Heroku and give it a unique name.
 
+      <details>
+      <summary>Create app</summary>
+  
+      ![Create app](documentation/readme/create_app_fe.png)
+  
+      </details>
+      <br>
+
 3. Set Up Buildpacks
 
    Navigate to the "Settings" tab and add the required buildpack:
@@ -421,6 +563,14 @@ The repository was created and stored on GitHub. Any changes made in VS Code was
 4. Connect to GitHub 
 
    In the "Deploy" tab, connect the Heroku app to your GitHub repository.
+
+      <details>
+      <summary>Connect</summary>
+  
+      ![Connect](documentation/readme/connect_repo_fe.png)
+  
+      </details>
+
 
 
 ## Credits
