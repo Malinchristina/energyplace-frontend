@@ -55,7 +55,7 @@
 }
 
 a {
-  color: #9c9c98;
+  color: #35291b;
   transition: color ease-in-out 0.3s;
 }
 
@@ -74,7 +74,7 @@ input[type="file"] {
 }
 
 i {
-  color: #9c9c98;
+  color: #35291b;
   font-size: 1.6rem;
   padding: 7px;
   vertical-align: middle;

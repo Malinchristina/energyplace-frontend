@@ -73,7 +73,7 @@ function ProfilePage() {
           />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{profile?.owner}</h3>
+          <h1 className="m-2">{profile?.owner}</h1>
           <ProfileStats
             posts_count={profile?.posts_count}
             followers_count={profile?.followers_count}
