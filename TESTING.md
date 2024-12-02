@@ -20,6 +20,7 @@ The website has passed the accessibility checks with **no errors** and **no cont
 
 <details>
   <summary>Click to view the image</summary>
+  
   ![Wave Accessibility Test](documentation/test_images/wave.png)
   
 </details>
