@@ -39,7 +39,6 @@ function PostPage() {
           : [];
         setTopLikedPosts(likedPosts);
       } catch (err) {
-        console.error("Error fetching top liked posts:", err);
       } finally {
         setTopLikedLoading(false); // Set loading to false
       }

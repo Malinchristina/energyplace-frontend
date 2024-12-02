@@ -51,7 +51,6 @@ function PostCreateForm() {
         // Set categories directly from the fetched data
         setCategories(data);
       } catch (error) {
-        console.error("Error fetching categories:", error);
       }
     };
   
@@ -65,7 +64,6 @@ function PostCreateForm() {
         const data = await response.json();
         setLocations(data);
       } catch (error) {
-        console.error("Error fetching locations:", error);
       }
     };
   

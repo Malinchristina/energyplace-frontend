@@ -41,7 +41,6 @@ function PostsPage({ message, filter = "" }) {
         : [];
       setTopLikedPosts(likedPosts);
     } catch (err) {
-      console.error("Error fetching top liked posts:", err);
     }
   }, []);
 
@@ -66,8 +65,7 @@ function PostsPage({ message, filter = "" }) {
           if (isMounted) {
             setPosts({ results: data, next: null });
           }
-        } else {
-          console.error("Unexpected API response:", data);
+        } else {  
         }
         setHasLoaded(true);
       } catch (err) {

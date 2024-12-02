@@ -21,7 +21,6 @@ const FilterDropdown = ({ filterType, setFilter }) => {
         const { data } = await axiosReq.get(endpoint);
         setOptions(Array.isArray(data) ? data : data.results || []);
       } catch (err) {
-        console.error(`Error fetching ${filterType} options:`, err);
         setOptions([]); // Ensure options is always an array even on error
       }
     };
