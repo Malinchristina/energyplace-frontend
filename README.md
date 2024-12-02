@@ -114,6 +114,13 @@ The logo is prominently featured in the main interface and is also integrated in
 
 The color scheme for the project was inspired by the logo. Colors were selected using [Image Color Picker](https://imagecolorpicker.com/) and then refined into a cohesive palette using [Coolors](https://coolors.co/). This palette was applied consistently throughout the project to maintain a unified and visually appealing design.
 
+<details>
+  <summary>Palette</summary>
+  
+  ![Palette](documentation/readme/palette.png)
+  
+</details>
+
 
 ### Typography  
 
