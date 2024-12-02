@@ -268,6 +268,18 @@ Lighthouse was used to analyze the performance, accessibility, and SEO of the we
 
 </details>
 
+<details>
+  <summary>Frontend Deployment</summary>
+
+  [GitHub Issue Link](https://github.com/Malinchristina/energyplace-frontend/issues/6)
+
+| TC ID   | US # | Title               | Pass as expected |
+|---------|------|---------------------|------------------|
+| EPIC #6 |      |                     |                  |
+| TC36    | 24   | Frontend Deployment | yes              |
+
+</details>
+
 [Back to top](#top)
 
 [Back to readme](README.md)
