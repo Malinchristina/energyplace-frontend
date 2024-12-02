@@ -46,7 +46,7 @@ View [API backend](https://github.com/Malinchristina/EnergyPlace-API)
   - [Post Editing](#post-editing)
   - [Commenting](#commenting)
   - [404 (Not Found)](#not-found)
-  - [Future Features](#future-features)
+  - [Future Feature](#future-feature)
 - [Agile Methodologies](#agile-methodologies)
 - [Technologies Used](#technologies-used)
   - [Languages](#languages)
@@ -342,6 +342,18 @@ On larger screens, the Add Post page layout adjusts to make optimal use of the a
   <summary>404 (Not Found)</summary>
 
   A custom `NotFound` component displays a user-friendly message when users navigate to an invalid route.  
+
+</details>
+
+<a id="future-feature"></a>
+<details>
+  <summary>Future Feature</summary>
+
+In the future, the profile page could include the following features:
+- **Followers List**: A list showing all the users who follow your profile.
+- **Following List**: A list showing all the users that you are following.
+
+These features will allow users to easily see their connections within the app, improving the social experience.
 
 </details>
 
