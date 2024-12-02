@@ -29,29 +29,7 @@ function ProfilesPage() {
     };
 
     fetchProfiles();
-  }, [query]);
-
-  const handleFollowToggle = async (profileId, isFollowing) => {
-    try {
-      if (isFollowing) {
-        await axiosReq.delete(`/followers/${profileId}/`);
-      } else {
-        await axiosReq.post(`/followers/`, { followed: profileId });
-      }
-      // Update the state to reflect the change
-      setProfiles((prevProfiles) => ({
-        ...prevProfiles,
-        results: prevProfiles.results.map((profile) =>
-          profile.id === profileId
-            ? { ...profile, following_id: isFollowing ? null : profileId }
-            : profile
-        ),
-      }));
-    } catch (err) {
-      console.error("Error toggling follow status:", err);
-    }
-  };
-  
+  }, [query]);  
   return (
     <Row className="h-100 no-gutters">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -67,13 +45,14 @@ function ProfilesPage() {
               >
                   {profiles.results.map((profile) => (
                     <Col md={12} key={profile.id} className="mb-4 ProfileCol">
-                      <Card className={`${appStyles.Content} ${styles.ProfileCard}`}>
+                    {/* Wrap just the Profile content inside Link */}
+                    <Card className={`${appStyles.Content} ${styles.ProfileCard}`}>
                       <Profile
                         profile={profile}
-                        handleFollowToggle={() => handleFollowToggle(profile.id, !!profile.following_id)}
+                        showFollowButton={false}
                       />
-                      </Card>
-                    </Col>
+                    </Card>
+                  </Col>
                   ))}
     
               </InfiniteScroll>

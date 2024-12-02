@@ -7,36 +7,43 @@ import Avatar from "../../components/Avatar";
 import ProfileStats from "../../components/ProfileStats";
 import Button from "react-bootstrap/Button";
 
-const Profile = (props, handleFollowToggle) => {
-  const { profile, imageSize = 55 } = props;
+const Profile = (props) => {
+  const { profile, imageSize = 55, showFollowButton = true } = props;
   const { id, following_id, image, owner } = profile;
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const handleFollow = () => {
+    props.handleFollowToggle && props.handleFollowToggle();
+  };
 
   return (
     <div className={`my-3 ${styles.Profile}`}>
-      <div className="d-flex align-items-center">
-        <Link to={`/profiles/${id}`}>
+      {/* Make the entire profile card clickable */}
+      <Link to={`/profiles/${id}`}>
+        <div className="d-flex align-items-center">
+          {/* Avatar remains separately clickable */}
           <Avatar src={image} height={imageSize} />
-        </Link>
-        <div className={`mx-2 ${styles.WordBreak}`}>
-          <Link to={`/profiles/${id}`} className={styles.OwnerName}>
+
+          {/* The owner name is still a link */}
+          <div className={`mx-2 ${styles.WordBreak}`}>
             <strong>{owner}</strong>
-          </Link>
-        </div>
-        {currentUser && !is_owner && (
-          <div className="ml-auto">
-            <Button
-              className={`${btnStyles.Button} ${
-                following_id ? btnStyles.BlackOutline : btnStyles.Black
-              }`}
-              onClick={props.handleFollowToggle}
-            >
-              {following_id ? "unfollow" : "follow"}
-            </Button>
           </div>
-        )}
-      </div>
+
+          {/* Only show the follow button for logged-in users who are not the profile owner */}
+          {currentUser && !is_owner && showFollowButton && (
+            <div className="ml-auto">
+              <Button
+                className={`${btnStyles.Button} ${
+                  following_id ? btnStyles.BlackOutline : btnStyles.Black
+                }`}
+                onClick={handleFollow}
+              >
+                {following_id ? "unfollow" : "follow"}
+              </Button>
+            </div>
+          )}
+        </div>
+      </Link>
       {/* Add ProfileStats */}
       <ProfileStats
         posts_count={profile.posts_count}
