@@ -451,3 +451,5 @@ The repository was created and stored on GitHub. Any changes made in VS Code was
 - Thanks to the swedish community in Slack for support and testing.
 - Gradient background color with help from alumni Jennifer Hujanen.
 - My dear friend Lina Myhr who helped with logo fixes.
+
+[Back to top](#top)

@@ -1,4 +1,18 @@
 # Testing EnergyPlace
+<a name="top"></a>
+
+[Back to readme](README.md)
+
+# Table of Contents
+
+- [API Testing](#api-testing)
+- [Validator](#validator)
+  - [JSX](#jsx)
+  - [CSS](#css)
+  - [Accessibility Testing](#accessibility-testing)
+  - [Lighthouse](#lighthouse)
+- [Epics & User Stories](#epics--user-stories)
+  
 
 ## API testing
 
@@ -253,3 +267,8 @@ Lighthouse was used to analyze the performance, accessibility, and SEO of the we
 
 
 </details>
+
+[Back to top](#top)
+
+[Back to readme](README.md)
+
