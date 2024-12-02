@@ -50,7 +50,7 @@ const Post = (props) => {
       setSuccessMessage("Post deleted successfully."); // Set success message
     setTimeout(() => {
       history.goBack(); // Go back after showing the message
-    }, 2000);
+    }, 5000);
     } catch (err) {
       console.log(err);
     }
