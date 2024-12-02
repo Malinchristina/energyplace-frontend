@@ -14,6 +14,17 @@ The JSX code was validated throughout the project using the ESLint extension in 
 
 The CSS code was tested using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input). The validation returned no errors but provided warnings related to the use of vendor-specific pseudo-elements such as `::-webkit-scrollbar`, `::-webkit-scrollbar-track`, and `::-webkit-scrollbar-thumb`. These warnings indicate that these elements are specific to WebKit-based browsers and are used to customize scrollbar appearance. They are commonly used for cross-browser compatibility and do not affect the functionality of the CSS.
 
+### Accessibility Testing
+
+The website has passed the accessibility checks with **no errors** and **no contrast errors** according to the [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/). This ensures that the site meets accessibility standards and provides a more inclusive user experience.
+
+<details>
+  <summary>Click to view the image</summary>
+  ![Wave Accessibility Test](documentation/test_images/wave.png)
+  
+</details>
+
+
 ## Epics & User Stories
 
 <details>
